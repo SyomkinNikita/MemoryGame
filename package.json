@@ -1,0 +1,14 @@
+{
+  "name": "MemoryGame",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:SyomkinNikita/MemoryGame.git",
+  "author": "nikita <79851214062@yandex.ru>",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.16.0",
+    "@babel/core": "^7.16.0",
+    "@babel/preset-env": "^7.16.0"
+  },
+  "browserslist": ["last 2 chrome versions"]
+}
