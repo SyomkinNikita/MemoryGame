@@ -46,7 +46,17 @@ module.exports = {
       {
         test: /\.jsx?$/,
         use: 'babel-loader'
+      },
+      {
+        test: /\.(png|svg|jpg)$/,
+        type: 'asset',
+        parser: {
+          dataUrlCondition: {
+            maxSize: 10 * 1024
+          }
+        }
       }
+   
     ]
   },
   plugins: [
