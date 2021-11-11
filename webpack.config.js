@@ -1,78 +1,94 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
-const buildPath = path.resolve(__dirname, 'dist');
-const srcPath = path.resolve(__dirname, 'src');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ForkTsCheckerPlugin = require('fork-ts-checker-webpack-plugin');
 
+const srcPath = path.resolve(__dirname, 'src');
 const isProd = process.env.NODE_ENV === 'production';
 
-const getSettingsForStyles = (withModules = false) => {
-  return [MiniCssExtractPlugin.loader, !withModules ?'css-loader' : {
-    loader: 'css-loader',
-    options: {
-      modules: {
-        localIdentName: !isProd ? '[path][name]__[local]' : '[hash:base64]'
+const plugins = [
+  new HtmlWebpackPlugin({
+    template: path.join(srcPath, 'index.html')
+  }),
+  !isProd && new ReactRefreshWebpackPlugin(),
+  new MiniCssExtractPlugin({
+    filename: '[name]-[hash].css'
+  }),
+  new ForkTsCheckerPlugin()
+].filter(Boolean);
+
+const  getCssRules = (withModules) => {
+  return [
+    MiniCssExtractPlugin.loader,
+    withModules ? {
+      loader: "css-loader",
+      options: {
+        modules:{
+          localIdentName: !isProd ? '[path][name]__[local]' : '[hash:base64]'
+        }
       }
-    }, 
-  }, {
-    loader: 'postcss-loader',
-    options: {
-      postcssOptions: {
-        plugins: ['autoprefixer']
-      }
+    } : 'css-loader',
+    {
+      loader: "postcss-loader",
+      options: {
+        postcssOptions: {
+          plugins: [
+            'autoprefixer'
+          ],
+        },
+      },
     }
-  }, 'sass-loader']
-};
+    ,
+    'sass-loader'
+  ]
+}
 
 module.exports = {
-  entry: path.resolve(__dirname, 'src'),
-  target: !isProd ? 'web' : 'browserslist',
+  entry: path.join(srcPath, 'index.tsx'),
+  devtool: 'eval-source-map',
   output: {
-    path: buildPath,
-    filename: "bundle.js"
+    path:  path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js'
   },
+  target: isProd ? 'browserslist' : 'web',
   module: {
     rules: [
       {
-        test: /\.module\.s?css$/,
-        use: getSettingsForStyles(true)
+        test: /\.([tj])sx?$/,
+        use: 'babel-loader'
+      },
+      {
+        test: /\.modules\.s?css$/,
+        use: getCssRules(true)
       },
       {
         test: /\.s?css$/,
-        exclude: /\.module\.s?css$/,
-        use: getSettingsForStyles()
-      },
-      {
-        test: /\.jsx?$/,
-        use: 'babel-loader'
+        exclude: /\.modules\.s?css$/,
+        use: getCssRules(false)
       },
       {
         test: /\.(png|svg|jpg)$/,
         type: 'asset',
         parser: {
           dataUrlCondition: {
-            maxSize: 10 * 1024
+            maxSize: 3 * 1024 // 10kb
           }
         }
       }
-   
     ]
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: path.join(srcPath, 'index.html')
-    }),
-    !isProd && new ReactRefreshWebpackPlugin(),
-    new MiniCssExtractPlugin(
-      {
-        filename: '[name]-[hash].css'
-      }
-    ),
-  ].filter(Boolean),
+  resolve: {
+    extensions: ['.jsx', '.js', '.tsx', '.ts'],
+    alias: {
+      components: path.resolve(srcPath, 'components')
+    }
+  },
+  plugins,
   devServer: {
-    host: '127.0.0.1',
-    port: 9000,
-    hot: true
+    host: 'localhost',
+    port: 9002,
+    hot: true,
+    inline: true
   }
 }
