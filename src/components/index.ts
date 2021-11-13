@@ -1,1 +1,2 @@
-export { Button } from './Button'
+export { Board } from './Board'
+export { Cards } from './Cards'

@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { Button } from '@components/Button';
+import { Board } from '@components/Board';
+
 
 
 export const App: React.FC = () => {
   return (
-    <div>
-      App init
-      <Button>fjjfj</Button>
-    </div>
+    <>
+      <Board />
+    </>
   )
 }
