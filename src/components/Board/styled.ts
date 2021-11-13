@@ -11,22 +11,14 @@ const Container = styled.div`
 `
 
 const ContainerBoard = styled.div`
-  display:inline-block;
-  
-  width:200px;
-  height:200px;
-`
+  width: 700px;
+  height: 500px;
 
-const Circle = styled.div`
-  width: 200px;
-  height: 200px;
-
-  border-radius: 50%;
-  border-left: 5px solid blue;
+  border: 3px solid darkblue;
+  box-shadow: 12px 12px 12px 12px rgba(122, 122, 215, .2);
 `
 
 export const Styled = {
   Container,
-  ContainerBoard,
-  Circle
+  ContainerBoard
 }

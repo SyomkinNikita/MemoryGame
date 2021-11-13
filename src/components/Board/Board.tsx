@@ -1,14 +1,12 @@
-import React from "react";
-import regular from '@assets/regular.svg';
+import * as React from "react";
+import { Cards } from "@components/Cards";
 import { Styled } from "./styled";
 
 export const Board: React.FC = () => {
   return (
     <Styled.Container>
       <Styled.ContainerBoard>
-        <Styled.Circle>
-          Boards
-        </Styled.Circle>
+        <Cards />
       </Styled.ContainerBoard>
     </Styled.Container>
   )
