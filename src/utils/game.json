@@ -1,0 +1,44 @@
+{
+  "game": [
+    {
+      "id": 1,
+      "value": "A",
+      "state": false
+    },
+    {
+      "id": 2,
+      "value": "A",
+      "state": false
+    },
+    {
+      "id": 3,
+      "value": "B",
+      "state": false
+    },
+    {
+      "id": 4,
+      "value": "B",
+      "state": false
+    },
+    {
+      "id": 5,
+      "value": "C",
+      "state": false
+    },
+    {
+      "id": 6,
+      "value": "C",
+      "state": false
+    },
+    {
+      "id": 7,
+      "value": "C",
+      "state": false
+    },
+    {
+      "id": 8,
+      "value": "C",
+      "state": false
+    }
+  ]
+}

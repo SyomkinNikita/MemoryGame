@@ -11,11 +11,14 @@ const Container = styled.div`
 `
 
 const ContainerBoard = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   width: 700px;
   height: 500px;
 
   border: 3px solid darkblue;
-  box-shadow: 12px 12px 12px 12px rgba(122, 122, 215, .2);
+  box-shadow: 12px 12px 12px 12px rgba(122, 122, 215, .4);
 `
 
 export const Styled = {
