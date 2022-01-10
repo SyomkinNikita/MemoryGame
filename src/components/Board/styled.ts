@@ -18,6 +18,7 @@ const ContainerBoard = styled.div`
   height: 500px;
 
   border: 3px solid darkblue;
+  border-radius: 10px;
   box-shadow: 12px 12px 12px 12px rgba(122, 122, 215, .4);
 `
 

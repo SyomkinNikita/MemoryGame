@@ -9,5 +9,5 @@ export const Board: React.FC = () => {
         <Cards />
       </Styled.ContainerBoard>
     </Styled.Container>
-  )
-}
+  );
+};
