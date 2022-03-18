@@ -1,4 +1,4 @@
-declare const theme: {
+export declare const theme: {
   readonly colors: {
       readonly black: "#000000";
       readonly white: "#FFF";
