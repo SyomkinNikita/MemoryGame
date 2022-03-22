@@ -23,7 +23,8 @@ export const Card: React.FC<{
       ? "translateX(-100%) rotateY(-180deg)"
       : "";
   }, [quantityLetterOnBoard, state]);
-  console.log(state);
+
+  // console.log(state);
 
   return (
     <React.Fragment>
